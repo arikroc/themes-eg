@@ -1,0 +1,12 @@
+{{ partial "header.html" . -}}
+  <h1>Themes by broccoli/list.html</h1>
+  {{- range .Site.Taxonomies.categories.bybean -}}
+    {{- if eq .Type "theme"}}
+      <h4><a href="{{ .Permalink }}">{{ .Title }}</a></h4>
+    {{- end -}}
+  {{- end }}
+{{ partial "footer.html" . -}}
+
+<!-- what is double curly brace with -? -->
+
+<!-- note to self i could make generic list template that looks at a code on the page itself, and create a list of all pages that fit that -->

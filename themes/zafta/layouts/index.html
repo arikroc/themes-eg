@@ -1,0 +1,40 @@
+{{ partial "header.html" . }}
+  <h2>Themes</h2>
+  {{- range first 10 .Data.Pages -}}
+    {{- if eq .Type "theme"}}
+      <h4><a href="{{ .Permalink }}">{{ .Title }}</a></h4>
+    {{- end -}}
+  {{- end }}
+  <h2>Pages</h2>
+  {{- range first 10 .Data.Pages -}}
+    {{- if eq .Type "page" }}
+      <h4><a href="{{ .Permalink }}">{{ .Title }}</a></h4>
+    {{- end -}}
+  {{- end }}
+
+
+  <h2>Taxonomies</h2>
+  <section>
+  <ul>
+    {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
+      <li><a href="{{ "/" | relLangURL}}{{ $taxonomyname | urlize }}">{{ $taxonomyname }}</a>
+        <ul>
+          {{ range $key, $value := $taxonomy }}
+          <li> {{ $key }} </li>
+                <ul>
+                {{ range $value.Pages }}
+                    <li hugo-nav="{{ .RelPermalink}}"><a href="{{ .Permalink}}"> {{ .LinkTitle }} </a> </li>
+                {{ end }}
+                </ul>
+          {{ end }}
+        </ul>
+      </li>
+    {{ end }}
+  </ul>
+</section>
+
+
+</body>
+</html>
+
+<!-- what is double curly brace with -? -->
